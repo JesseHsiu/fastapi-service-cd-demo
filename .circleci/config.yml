@@ -45,6 +45,7 @@ commands:
           show-kubectl-command: true
           kustomize: true
           resource-file-path: k8s/overlays/<<parameters.env>>
+      # you need to add more if you need to check if your pod is live
 
 jobs:
   pr:
