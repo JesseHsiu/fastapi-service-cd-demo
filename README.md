@@ -1,4 +1,4 @@
-# Service CI/CD Demo
+# FastAPI with SQL database demo
 This repository is an example of a starting point of every project we have: including Steaker / XY Finance / Galaxy Kats.
 
 ## Highlights:
@@ -15,7 +15,7 @@ This repository is an example of a starting point of every project we have: incl
 - Clone this repo
 - Setup environment variables in CircleCI
   - Based on your conditions, setup the followings: `GCLOUD_SERVICE_KEY`, `GOOGLE_COMPUTE_REGION`, `GOOGLE_COMPUTE_ZONE`, `GOOGLE_PROJECT_ID`, `K8S_CLUSTER_NAME_STAGE`, `K8S_CLUSTER_NAME_INTERNAL`, `K8S_CLUSTER_NAME_PROD` (as described in `.circleci/config.yml`)
-- Database should user Cloud SQL, and connect by [Auth Proxy](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine) as side-car in your deployment
+- Database should use Cloud SQL, and connect by [Auth Proxy](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine) as side-car in your deployment
 - `internal` environmemnt is optional, please make changes based on your requirements
 
 ## Environments
