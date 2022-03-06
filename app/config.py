@@ -8,6 +8,12 @@ from app.utils.get_project_root import get_project_root
 
 
 class Settings(BaseSettings):
+    mysql_username: str
+    mysql_password: str
+    alembic_mysql_host: Optional[str]
+    mysql_port: str
+    mysql_database: str
+    
     some_random_string: str
 
 
