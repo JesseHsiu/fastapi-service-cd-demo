@@ -87,26 +87,35 @@ workflows:
       - pr:
           filters:
             branches:
-              ignore: main
+              ignore:
+                - main
+                - stage
 
   build-and-deploy:
     jobs:
       - gcp-gcr/build-and-push-image:
           filters:
             branches:
-              only: main
+              only:
+                - main
+                - stage
           image: ${CIRCLE_PROJECT_REPONAME}
           tag: ${CIRCLE_SHA1}
       - deploy-stage:
+          filters:
+            branches:
+              only:
+                - stage
           requires:
             - gcp-gcr/build-and-push-image
-      - deploy-internal-hold:
-          type: approval
-          requires:
-            - deploy-stage
       - deploy-internal:
+          filters:
+            branches:
+              only:
+                - main
           requires:
-            - deploy-internal-hold
+            - gcp-gcr/build-and-push-image
+
   deploy-prod:
     jobs:
       - deploy-prod:
