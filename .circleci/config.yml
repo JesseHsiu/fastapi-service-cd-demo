@@ -41,6 +41,8 @@ commands:
             cd k8s/base
             kustomize edit set image images/demo-server=gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
             cd -
+      # stop related resources (because of DB migration, such as cronjobs)
+      # migration of your DB
       - kubernetes/create-or-update-resource:
           show-kubectl-command: true
           kustomize: true
