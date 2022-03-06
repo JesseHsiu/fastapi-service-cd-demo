@@ -15,14 +15,14 @@ This repository is an example of a starting point of every project we have: incl
 ```
 .
 ├── app                  # application files
-│   ├── cronjobs         # cronjob scripts
-│   ├── cruds            # every db transaction methods
-│   ├── migrations       # db migration (alembic)
-│   ├── models           # db models
-│   ├── routers          # routers for different prefix endpoint
-│   ├── schemas          # response schemas (for documentation)
-│   ├── utils            # common functions
-│   ├── config.py        # application settings (derived from dot_envs)
+│   ├── cronjobs         # cronjob scripts (regularly update by workers...etc)
+│   ├── cruds            # DB transaction methods (create, read, update and delete)
+│   ├── migrations       # DB migration (alembic)
+│   ├── models           # DB models
+│   ├── routers          # Routers for different prefix endpoint
+│   ├── schemas          # Response schemas (for documentation)
+│   ├── utils            # Common functions
+│   ├── config.py        # Application settings (derived from dot_envs)
 │   ├── database.py      # Databse instance
 │   └── main.py          # FastAPI instance
 ├── dot_envs             # dot env for different environment
