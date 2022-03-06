@@ -39,14 +39,15 @@ commands:
           name: Set image tag with kustomize
           command: |
             cd k8s/base
-            kustomize edit set image gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}=gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
+            kustomize edit set image images/demo-server=gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
             cd -
+            kustomize build k8s/overlays/<<parameters.env>> > kubernetes.yaml
       - kubernetes/create-or-update-resource:
           show-kubectl-command: true
-          kustomize: true
-          resource-file-path: k8s/overlays/<<parameters.env>>
-          get-rollout-status: true
-          watch-timeout: 10m
+          resource-file-path: kubernetes.yaml
+      - kubernetes/get-rollout-status:
+          resource-file-path: kubernetes.yaml
+          watch-timeout: 5m
 
 jobs:
   pr:

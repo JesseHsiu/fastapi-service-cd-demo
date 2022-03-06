@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demo-server
-        image: gcr.io/$(GOOGLE_PROJECT_ID)/$(CIRCLE_PROJECT_REPONAME)
+        image: images/demo-server
         imagePullPolicy: Always
         ports:
           - containerPort: 8000
