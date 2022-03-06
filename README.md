@@ -11,7 +11,7 @@ This repository is an example of a starting point of every project we have: incl
 - Environment variable to application
 
 
-## Foleder Structure
+## Folder Structure
 ```
 .
 ├── app                  # application files
