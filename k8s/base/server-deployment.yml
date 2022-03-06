@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demo-server
-        image: gcr.io/k8s-cd-demo/fastapi-service-cd-demo
+        image: gcr.io/$(GOOGLE_PROJECT_ID)/$(CIRCLE_PROJECT_REPONAME)
         imagePullPolicy: Always
         ports:
           - containerPort: 8000
