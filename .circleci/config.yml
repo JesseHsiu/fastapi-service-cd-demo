@@ -41,13 +41,10 @@ commands:
             cd k8s/base
             kustomize edit set image images/demo-server=gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
             cd -
-            kustomize build k8s/overlays/<<parameters.env>> > kubernetes.yaml
       - kubernetes/create-or-update-resource:
           show-kubectl-command: true
-          resource-file-path: kubernetes.yaml
-      - kubernetes/get-rollout-status:
-          resource-file-path: kubernetes.yaml
-          watch-timeout: 5m
+          kustomize: true
+          resource-file-path: k8s/overlays/<<parameters.env>>
 
 jobs:
   pr:
