@@ -16,5 +16,5 @@ spec:
       - name: demo-server
         image: gcr.io/k8s-cd-demo/fastapi-service-cd-demo
         imagePullPolicy: Always
-          ports:
-            - containerPort: 8000
+        ports:
+          - containerPort: 8000

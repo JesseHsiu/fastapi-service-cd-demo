@@ -44,7 +44,7 @@ commands:
       - kubernetes/create-or-update-resource:
           show-kubectl-command: true
           kustomize: true
-          resource-file-path: k8s/<<parameters.env>>
+          resource-file-path: k8s/overlays/<<parameters.env>>
           get-rollout-status: true
           watch-timeout: 10m
 
