@@ -91,28 +91,27 @@ workflows:
                 - main
                 - stage
 
-  build-and-deploy:
+  build-and-deploy-stage:
     jobs:
       - gcp-gcr/build-and-push-image:
           filters:
             branches:
-              only:
-                - main
-                - stage
+              only: stage
           image: ${CIRCLE_PROJECT_REPONAME}
           tag: ${CIRCLE_SHA1}
       - deploy-stage:
-          filters:
-            branches:
-              only:
-                - stage
           requires:
             - gcp-gcr/build-and-push-image
-      - deploy-internal:
+
+  build-and-deploy-internal:
+    jobs:
+      - gcp-gcr/build-and-push-image:
           filters:
             branches:
-              only:
-                - main
+              only: main
+          image: ${CIRCLE_PROJECT_REPONAME}
+          tag: ${CIRCLE_SHA1}
+      - deploy-internal:
           requires:
             - gcp-gcr/build-and-push-image
 
