@@ -11,6 +11,28 @@ This repository is an example of a starting point of every project we have: incl
 - Environment variable to application
 
 
+## Usage
+- Clone this repo
+- Setup environment variables in CircleCI
+  - Based on your conditions, setup the followings: `GCLOUD_SERVICE_KEY`, `GOOGLE_COMPUTE_REGION`, `GOOGLE_COMPUTE_ZONE`, `GOOGLE_PROJECT_ID`, `K8S_CLUSTER_NAME_STAGE`, `K8S_CLUSTER_NAME_INTERNAL`, `K8S_CLUSTER_NAME_PROD` (as described in `.circleci/config.yml`)
+- Database should user Cloud SQL, and connect by [Auth Proxy](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine) as side-car in your deployment
+- `internal` environmemnt is optional, please make changes based on your requirements
+
+## Environments
+- `stage`: testing environments with test configurations (such as testnet, test erc20 ...etc)
+- `internal` (optional): same as production environment but limited access to internal
+- `prod`: production environment and GA (general available)
+
+## Lifecycle of a feature
+  - Create a branch from `main`, named it as JIRA ticket name (such as `SJP-100`)
+  - After implementation, create a PR to merge to `stage`
+  - After reviews, merge it to `stage` (deployed to `stage` environment)
+  - Check everything is ok in `stage` and should be tested by PM or QA
+  - Create another PR from `SJP-100` to `main` & merge. (deployed to `internal` environment)
+  - Check again if there is any issues in `internal`
+  - Wait for release time and create a new release from github page (deployed to `prod` environment)
+  
+
 ## Folder Structure
 ```
 .
