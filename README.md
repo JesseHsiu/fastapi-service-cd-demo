@@ -31,6 +31,7 @@ This repository is an example of a starting point of every project we have: incl
   - Create another PR from `SJP-100` to `main` & merge. (deployed to `internal` environment)
   - Check again if there is any issues in `internal`
   - Wait for release time and create a new release from github page (deployed to `prod` environment)
+  - After some point or after release, merge `main` to `stage` or delete `stage` and create a new `stage` from `main` based on your conditions
   
 
 ## Folder Structure
