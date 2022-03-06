@@ -5,7 +5,6 @@ orbs:
   gcp-cli: circleci/gcp-cli@2.4.0
   gcp-gcr: circleci/gcp-gcr@0.14.1
   kubernetes: circleci/kubernetes@1.3.0
-  kustomize: finc/kustomize@0.0.2
 
 ### ENVIRONMENT VARIABLE REQUIRED
 ## Google related variable (Orb required)
@@ -31,10 +30,18 @@ commands:
       - kubernetes/install-kubectl
       - gcp-cli/install
       - gcp-cli/initialize
-      - kustomize/install
       - run:
           name: Set up for kubectl access to cluster
           command: gcloud container clusters get-credentials <<parameters.cluster-name>>
+      - run:
+          name: "Install kustomize (v4.5.2)"
+          command: |
+            URL=https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v4.5.2/kustomize_v4.5.2_linux_amd64.tar.gz
+            curl -L $URL | tar zx
+
+            [ -w /usr/local/bin ] && SUDO="" || SUDO=sudo
+            $SUDO chmod +x ./kustomize
+            $SUDO mv ./kustomize /usr/local/bin
       - run:
           name: Set image tag with kustomize
           command: |
